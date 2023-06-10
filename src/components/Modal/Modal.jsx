@@ -5,23 +5,20 @@ import css from './Modal.module.css';
 
 const rootModal = document.querySelector('#root-modal');
 
-export const Modal = ({ largeImageURL, tags, onCloseModal }) => {
+export default function Modal({ onCloseModal, largeImageURL, tags }) {
   useEffect(() => {
-    const handleKeyDown = e => {
-      if (e.code === 'Escape') {
-        onCloseModal();
-      }
-    };
-
     window.addEventListener('keydown', handleKeyDown);
 
-    return (
-      () => {
-        window.removeEventListener('keydown', handleKeyDown);
-      },
-      [onCloseModal]
-    );
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   });
+
+  const handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      onCloseModal();
+    }
+  };
 
   const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
@@ -37,7 +34,7 @@ export const Modal = ({ largeImageURL, tags, onCloseModal }) => {
     </div>,
     rootModal
   );
-};
+}
 
 Modal.propTypes = {
   onCloseModal: PropTypes.func.isRequired,

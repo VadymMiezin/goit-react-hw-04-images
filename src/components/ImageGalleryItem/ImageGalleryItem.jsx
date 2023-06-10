@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from './ImageGalleryItem.module.css';
-import { Modal } from 'components/Modal/Modal';
+import Modal from 'components/Modal/Modal';
 
-export const ImageGalleryItem = ({ webURL, tags, largeImageURL }) => {
+export default function ImageGalleryItem({ webURL, tags, largeImageURL }) {
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
@@ -28,7 +28,7 @@ export const ImageGalleryItem = ({ webURL, tags, largeImageURL }) => {
       )}
     </li>
   );
-};
+}
 
 ImageGalleryItem.propTypes = {
   webURL: PropTypes.string.isRequired,
